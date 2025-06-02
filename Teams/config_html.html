@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BD Request Form Configuration</title>
+    <script src="https://res.cdn.office.net/teams-js/2.0.0/js/MicrosoftTeams.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 20px;
+            background-color: #f3f2f1;
+            color: #323130;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #0078d4;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        .description {
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            color: #605e5c;
+        }
+        .feature-list {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+        }
+        .feature-list h3 {
+            margin-top: 0;
+            color: #0078d4;
+        }
+        .feature-list ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        .feature-list li {
+            margin-bottom: 8px;
+        }
+        .logo {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 20px;
+            display: block;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://eastpoint-engineering.github.io/ep18432-form-addon/bdrequesticon.png" alt="BD Requests Logo" class="logo">
+        
+        <h1>BD Request Form Configuration</h1>
+        
+        <div class="description">
+            <p>This will add the BD Request form to your team, allowing team members to easily submit business development requests.</p>
+        </div>
+        
+        <div class="feature-list">
+            <h3>What this tab provides:</h3>
+            <ul>
+                <li>Quick access to Microsoft Forms for BD requests</li>
+                <li>Streamlined request submission process</li>
+                <li>Integration with your existing workflow</li>
+                <li>Easy access for all team members</li>
+            </ul>
+        </div>
+        
+        <div class="description">
+            <p><strong>Ready to add this tab to your team?</strong> Click the "Save" button to continue.</p>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Teams SDK
+        microsoftTeams.app.initialize().then(() => {
+            console.log('Teams SDK initialized');
+            
+            // Register the save handler
+            microsoftTeams.pages.config.registerOnSaveHandler((saveEvent) => {
+                console.log('Save handler called');
+                
+                // Set the configuration for the tab
+                microsoftTeams.pages.config.setConfig({
+                    entityId: "bdrequest",
+                    contentUrl: "https://eastpoint-engineering.github.io/ep18432-form-addon/index.html",
+                    suggestedDisplayName: "BD Request Form",
+                    websiteUrl: "https://forms.office.com/Pages/ResponsePage.aspx?id=M1XAlVa32EuEY5G_MTYGDkCWomda7VxJtsEQJMtpBudUMFBEMVhWRzFTUkpVTzFDUlFMVDZORkxSNCQlQCN0PWcu"
+                });
+                
+                // Notify that the save was successful
+                saveEvent.notifySuccess();
+            });
+            
+            // Set the tab as valid so the save button is enabled
+            microsoftTeams.pages.config.setValidityState(true);
+            
+        }).catch((error) => {
+            console.error('Failed to initialize Teams SDK:', error);
+        });
+    </script>
+</body>
+</html>
