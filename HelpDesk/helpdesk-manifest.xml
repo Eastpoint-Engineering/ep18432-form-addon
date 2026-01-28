@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" 
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+           xsi:type="MailApp">
+  
+  <Id>c3d4e5f6-a7b8-9012-cdef-123456789012</Id>
+  <Version>1.0.0.2</Version>
+  <ProviderName>Eastpoint Engineering</ProviderName>
+  <DefaultLocale>en-US</DefaultLocale>
+  <DisplayName DefaultValue="Help Desk"/>
+  <Description DefaultValue="Submit a help desk ticket via email."/>
+  <IconUrl DefaultValue="https://eastpoint-engineering.github.io/ep18432-form-addon/HelpDesk/icon-32.png"/>
+  <HighResolutionIconUrl DefaultValue="https://eastpoint-engineering.github.io/ep18432-form-addon/HelpDesk/icon-80.png"/>
+  <SupportUrl DefaultValue="https://github.com/Eastpoint-Engineering/ep18432-form-addon/tree/main/HelpDesk"/>
+  
+  <Hosts>
+    <Host Name="Mailbox"/>
+  </Hosts>
+  
+  <Requirements>
+    <Sets>
+      <Set Name="Mailbox" MinVersion="1.1"/>
+    </Sets>
+  </Requirements>
+  
+  <FormSettings>
+    <!-- Read mode for desktop -->
+    <Form xsi:type="ItemRead">
+      <DesktopSettings>
+        <SourceLocation DefaultValue="https://eastpoint-engineering.github.io/ep18432-form-addon/HelpDesk/index.html"/>
+        <RequestedHeight>250</RequestedHeight>
+      </DesktopSettings>
+      <!-- Tablet settings for web/iPad -->
+      <TabletSettings>
+        <SourceLocation DefaultValue="https://eastpoint-engineering.github.io/ep18432-form-addon/HelpDesk/index.html"/>
+        <RequestedHeight>250</RequestedHeight>
+      </TabletSettings>
+      <!-- Phone settings for mobile -->
+      <PhoneSettings>
+        <SourceLocation DefaultValue="https://eastpoint-engineering.github.io/ep18432-form-addon/HelpDesk/index.html"/>
+      </PhoneSettings>
+    </Form>
+    
+    <!-- Compose mode for desktop -->
+    <Form xsi:type="ItemEdit">
+      <DesktopSettings>
+        <SourceLocation DefaultValue="https://eastpoint-engineering.github.io/ep18432-form-addon/HelpDesk/index.html"/>
+        <RequestedHeight>250</RequestedHeight>
+      </DesktopSettings>
+      <!-- Tablet settings for web/iPad -->
+      <TabletSettings>
+        <SourceLocation DefaultValue="https://eastpoint-engineering.github.io/ep18432-form-addon/HelpDesk/index.html"/>
+        <RequestedHeight>250</RequestedHeight>
+      </TabletSettings>
+      <!-- Phone settings for mobile -->
+      <PhoneSettings>
+        <SourceLocation DefaultValue="https://eastpoint-engineering.github.io/ep18432-form-addon/HelpDesk/index.html"/>
+      </PhoneSettings>
+    </Form>
+  </FormSettings>
+  
+  <Permissions>ReadWriteMailbox</Permissions>
+  
+  <!-- Rules to show in both read and compose modes -->
+  <Rule xsi:type="RuleCollection" Mode="Or">
+    <Rule xsi:type="ItemIs" ItemType="Message" FormType="Read"/>
+    <Rule xsi:type="ItemIs" ItemType="Message" FormType="Edit"/>
+    <Rule xsi:type="ItemIs" ItemType="Message" FormType="ReadOrEdit"/>
+  </Rule>
+  
+</OfficeApp>
