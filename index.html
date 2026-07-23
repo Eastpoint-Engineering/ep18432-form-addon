@@ -4,31 +4,31 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>BD Requests</title>
-
+    <title>Submit Form</title>
+    
     <!-- Office JavaScript API -->
     <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.js"></script>
-
+    
     <style>
         body {
             font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
             margin: 20px;
             background-color: #f5f5f5;
         }
-
+        
         .container {
             background-color: white;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
-
+        
         h2 {
             color: #0078d4;
             margin-top: 0;
             text-align: center;
         }
-
+        
         .form-button {
             background-color: #0078d4;
             color: white;
@@ -40,36 +40,35 @@
             width: 100%;
             margin: 10px 0;
             transition: background-color 0.3s;
-            text-align: left;
         }
-
+        
         .form-button:hover {
             background-color: #106ebe;
         }
-
+        
         .form-button:active {
             background-color: #005a9e;
         }
-
+        
         .status {
             margin: 10px 0;
             padding: 10px;
             border-radius: 4px;
             display: none;
         }
-
+        
         .status.success {
             background-color: #dff6dd;
             color: #0e5814;
             border: 1px solid #1aaa29;
         }
-
+        
         .status.error {
             background-color: #fde7e9;
             color: #721c24;
             border: 1px solid #d13438;
         }
-
+        
         .status.info {
             background-color: #d1ecf1;
             color: #0c5460;
@@ -80,17 +79,13 @@
 
 <body>
     <div class="container">
-        <h2>BD Requests</h2>
-        <p>Choose an option below:</p>
-
-        <button class="form-button" onclick="openLink('PROPOSAL')">
-            📁 Set Up a New Proposal Folder &amp; Number
+        <h2>Submit a BD Request</h2>
+        <p>Click the button below to submit a BD Request form.</p>
+        
+        <button class="form-button" onclick="openMicrosoftForm()">
+            📋 Submit Form
         </button>
-
-        <button class="form-button" onclick="openLink('CHANGE_ORDER')">
-            📝 Set Up a Change Order (CO)
-        </button>
-
+        
         <div id="status" class="status"></div>
     </div>
 
@@ -101,38 +96,29 @@
             }
         });
 
-        const LINKS = {
-            PROPOSAL: {
-                label: 'New Proposal Set Up form',
-                url: "https://eastpointengineering.sharepoint.com/sites/BusinessDevelopment/_layouts/15/listform.aspx?PageType=8&ListId=%7b26BE0E22-EC21-4E78-8F06-7EC92D2A2D2B%7d&RootFolder=&Source=https%3a%2f%2feastpointengineering.sharepoint.com%2fsites%2fBusinessDevelopment%2fLists%2fNew%2520Proposal%2520Set%2520Up%2520Form%2fAjeraView.aspx&ContentTypeId=0x0100BFC5E956FD23894B93AC52AA4C31078C006E7E9EFA11428B4DBF57A5A4FAD33F80"
-            },
-            CHANGE_ORDER: {
-                label: 'Change Order (CO) form',
-                url: "https://forms.office.com/Pages/ResponsePage.aspx?id=M1XAlVa32EuEY5G_MTYGDvF4l143xPFNjDrz66FNOmZUQ1JKNFFaTzZBVTlOOFlGOU9VNjFCS05XMSQlQCN0PWcu"
-            }
-        };
-
-        function openLink(key) {
-            const link = LINKS[key];
-            if (!link) return;
-
-            showStatus('Opening ' + link.label + '...', 'info');
-
+        function openMicrosoftForm() {
+            const FORM_URL = "https://forms.office.com/Pages/ResponsePage.aspx?id=M1XAlVa32EuEY5G_MTYGDkCWomda7VxJtsEQJMtpBudUMFBEMVhWRzFTUkpVTzFDUlFMVDZORkxSNCQlQCN0PWcu";
+            
+            showStatus('Opening Microsoft Form...', 'info');
+            
             try {
-                window.open(link.url, '_blank');
-                showStatus(link.label + ' opened successfully!', 'success');
+                // Open the Microsoft Form in a new window/tab
+                window.open(FORM_URL, '_blank');
+                
+                showStatus('Microsoft Form opened successfully!', 'success');
+                
             } catch (error) {
-                console.error('Error opening link:', error);
-                showStatus('Error opening ' + link.label + ': ' + error.message, 'error');
+                console.error('Error opening Microsoft Form:', error);
+                showStatus('Error opening Microsoft Form: ' + error.message, 'error');
             }
         }
-
+        
         function showStatus(message, type) {
             const statusDiv = document.getElementById('status');
             statusDiv.textContent = message;
             statusDiv.className = 'status ' + type;
             statusDiv.style.display = 'block';
-
+            
             // Hide status after 3 seconds for success messages
             if (type === 'success') {
                 setTimeout(() => {
